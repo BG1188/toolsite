@@ -1,17 +1,56 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>电子板 - ToolSite</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/board.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>电子板 - ToolSite</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/board.css">
 </head>
 <body>
-    <div class="board-container">
-        <div id="date" class="board-date"></div>
-        <div id="time" class="board-time"></div>
-        <div id="weather" class="board-weather">加载天气中...</div>
-    </div>
-    <script src="../js/board.js"></script>
+  <main class="board-container">
+    <!-- 左侧：月历 -->
+    <section class="board-left">
+      <div class="cal-header">
+        <div class="cal-nav">
+          <button id="prevYear" class="nav-btn" title="上一年">«</button>
+          <button id="prevMonth" class="nav-btn" title="上一月">‹</button>
+        </div>
+        <div id="monthTitle" class="month-title" aria-live="polite"></div>
+        <div class="cal-nav">
+          <button id="nextMonth" class="nav-btn" title="下一月">›</button>
+          <button id="nextYear" class="nav-btn" title="下一年">»</button>
+        </div>
+      </div>
+
+      <div class="weekdays">
+        <div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div><div>日</div>
+      </div>
+
+      <div id="calendarGrid" class="calendar-grid" role="grid" aria-label="日历"></div>
+
+      <div id="dayInfo" class="day-info">点击某一天查看农历、星期等详情</div>
+    </section>
+
+    <!-- 右侧：时间 + 天气 -->
+    <aside class="board-right">
+      <div class="time-box">
+        <div id="time" class="time" aria-live="polite">--:--:--</div>
+        <div id="date" class="date" aria-live="polite">加载中...</div>
+      </div>
+
+      <div id="weather" class="weather">
+        <div class="weather-head">
+          <span id="weather-location">加载定位中...</span>
+          <button id="refreshWeather" title="刷新天气">⟳</button>
+        </div>
+        <div id="weather-body" class="weather-body">正在获取天气…</div>
+        <div id="weather-note" class="weather-note"></div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="../js/board.js"></script>
 </body>
 </html>
