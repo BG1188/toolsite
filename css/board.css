@@ -1,84 +1,148 @@
+/* 清新风格 + 浅色系 */
 body {
     margin: 0;
-    height: 100vh;
+    padding: 0;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(to bottom right, #f0faff, #ffffff);
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #1c1b19; /* 深色背景 */
-    font-family: 'Merriweather', serif;
-    color: #d4af37; /* 复古金色 */
+    height: 100vh;
 }
 
+/* 整体容器：PC 横向，手机竖向 */
 .board-container {
     display: flex;
-    gap: 40px;
-    padding: 20px 40px;
-    border-radius: 12px;
-    background: rgba(30, 28, 26, 0.85);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-}
-
-/* 左侧日历 */
-.calendar-section {
-    text-align: center;
-}
-.calendar-header {
-    display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    font-size: 1.2em;
-}
-.calendar-header button {
-    background: none;
-    border: none;
-    color: #d4af37;
-    font-size: 1.2em;
-    cursor: pointer;
-}
-#calendar {
-    width: 100%;
-    border-collapse: collapse;
-}
-#calendar th, #calendar td {
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    border-radius: 6px;
-    cursor: pointer;
-}
-#calendar th {
-    color: #f0e6c8;
-}
-#calendar td:hover {
-    background: rgba(212, 175, 55, 0.3);
-}
-#calendar td.active {
-    background: #d4af37;
-    color: #1c1b19;
-}
-.day-info {
-    margin-top: 10px;
-    font-size: 0.9em;
-    color: #f0e6c8;
+    width: 95%;
+    max-width: 1400px;
+    height: 90vh;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
 }
 
-/* 右侧信息 */
-.info-section {
+/* 日历区域 */
+.calendar {
+    flex: 1;
+    padding: 20px;
+    background: #ffffff;
+    border-right: 2px solid #e0f0ff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-.board-time {
-    font-size: 3em;
+
+.calendar header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.calendar h2 {
+    font-size: 1.5rem;
+    color: #0077b6;
+}
+
+.calendar button {
+    background: #caf0f8;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.calendar button:hover {
+    background: #90e0ef;
+}
+
+.calendar table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.calendar th {
+    color: #0077b6;
+    padding: 8px;
+}
+.calendar td {
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.calendar td:hover {
+    background: #e0f7fa;
+}
+.calendar .today {
+    background: #0077b6;
+    color: #fff;
     font-weight: bold;
-    margin-bottom: 15px;
 }
-.board-date {
-    font-size: 1.4em;
-    margin-bottom: 15px;
+
+/* 时间 + 天气 */
+.info-panel {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    background: #f9fdff;
 }
-.board-weather {
-    font-size: 1.2em;
-    color: #f0e6c8;
+
+#time {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #023e8a;
+}
+
+#date {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: #0077b6;
+}
+
+#weather {
+    font-size: 1.2rem;
+    background: #e0f7fa;
+    padding: 12px;
+    border-radius: 12px;
+    color: #03045e;
+}
+
+/* ===== 响应式设计 ===== */
+@media (max-width: 768px) {
+    .board-container {
+        flex-direction: column;
+        height: auto;
+    }
+    .calendar {
+        border-right: none;
+        border-bottom: 2px solid #e0f0ff;
+    }
+    #time {
+        font-size: 2.2rem;
+    }
+    #date {
+        font-size: 1.2rem;
+    }
+}
+
+.day-detail {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #f1faff;
+    font-size: 1rem;
+    color: #333;
+    text-align: center;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
 }
