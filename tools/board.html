@@ -21,17 +21,17 @@
 
     <!-- 时间 + 天气 -->
     <div class="info-panel">
-      <div>
+      <div class="time-date-group">
         <div id="time"></div>
         <div id="date"></div>
       </div>
-      <div id="weather">正在加载天气...</div>
+      <div id="weather" class="weather-card">正在加载天气...</div>
     </div>
   </div>
 
-  <!-- 替换为更稳定的农历库 -->
-  <script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.2/dist/lunar.min.js"></script>
-  <!-- 你的逻辑代码 -->
+  <!-- 农历库 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lunar-javascript/1.7.4/lunar.min.js"></script>
+  <!-- 逻辑代码 -->
   <script src="../js/board.js"></script>
 </body>
 </html>

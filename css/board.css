@@ -24,7 +24,7 @@ body {
     overflow: hidden;
 }
 
-/* 日历区域优化 */
+/* 日历区域 */
 .calendar {
     flex: 1;
     padding: 25px;
@@ -76,6 +76,8 @@ body {
     border-spacing: 6px;
     text-align: center;
     flex-grow: 1;
+    table-layout: fixed;
+    height: 100%;
 }
 
 .calendar th {
@@ -109,10 +111,10 @@ body {
 }
 
 .calendar td.selected {
-    background: #e6f2ff;
-    color: #0066cc;
+    background: #90e0ef;
+    color: #023e8a;
     font-weight: bold;
-    box-shadow: 0 4px 8px rgba(0, 102, 204, 0.1);
+    box-shadow: 0 4px 8px rgba(2, 62, 138, 0.1);
 }
 
 .calendar .today {
@@ -121,15 +123,15 @@ body {
     font-weight: bold;
 }
 
-/* 时间+天气模块优化 */
+/* 时间+天气模块 */
 .info-panel {
     flex: 1;
     padding: 25px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* 垂直居中 */
+    justify-content: center;
     background: #f9fbff;
-    gap: 30px; /* 减小中间空白 */
+    gap: 30px;
 }
 
 .time-date-group {
@@ -141,7 +143,7 @@ body {
 }
 
 #time {
-    font-size: 4.5rem; /* 增大时间 */
+    font-size: 4.5rem;
     font-weight: 700;
     margin-bottom: 15px;
     color: #0052cc;
@@ -150,13 +152,13 @@ body {
 }
 
 #date {
-    font-size: 1.6rem; /* 增大日期 */
+    font-size: 1.6rem;
     color: #6699cc;
     font-weight: 500;
 }
 
 .weather-card {
-    font-size: 1.4rem; /* 增大天气 */
+    font-size: 1.4rem;
     background: #ffffff;
     padding: 25px;
     border-radius: 16px;
@@ -217,10 +219,4 @@ body {
         gap: 20px;
         padding: 20px;
     }
-}
-/* 在现有样式基础上添加 */
-.calendar td.selected {
-    background: #90e0ef;
-    color: #023e8a;
-    font-weight: bold;
 }
