@@ -218,3 +218,9 @@ body {
         padding: 20px;
     }
 }
+/* 在现有样式基础上添加 */
+.calendar td.selected {
+    background: #90e0ef;
+    color: #023e8a;
+    font-weight: bold;
+}
