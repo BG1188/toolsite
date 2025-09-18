@@ -63,21 +63,6 @@ setInterval(getLocationAndWeather, 600000);
 
 // ======== 日历 ========
 let currentDate = new Date();
-const calendarTable = document.getElementById("calendar");
-
-// 初始化时绑定一次事件委托（关键修改）
-calendarTable.addEventListener('click', function(e) {
-    if (e.target.tagName === 'TD' && e.target.hasAttribute('data-date')) {
-        const dateParts = e.target.getAttribute('data-date').split(',').map(Number);
-        showDayDetail(...dateParts);
-        
-        // 更新选中状态
-        document.querySelectorAll('#calendar td').forEach(td => {
-            td.classList.remove('selected');
-        });
-        e.target.classList.add('selected');
-    }
-});
 
 function renderCalendar(date) {
     const year = date.getFullYear();
@@ -85,15 +70,16 @@ function renderCalendar(date) {
     const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
+    const calendar = document.getElementById("calendar");
     const monthYear = document.getElementById("monthYear");
-    calendarTable.innerHTML = "";
+    calendar.innerHTML = "";
     monthYear.textContent = `${year}年 ${month + 1}月`;
 
     const weekdays = ["日", "一", "二", "三", "四", "五", "六"];
     let headerRow = "<tr>";
     weekdays.forEach(d => headerRow += `<th>${d}</th>`);
     headerRow += "</tr>";
-    calendarTable.innerHTML += headerRow;
+    calendar.innerHTML += headerRow;
 
     let row = "<tr>";
     for (let i = 0; i < firstDay; i++) {
@@ -105,11 +91,10 @@ function renderCalendar(date) {
         }
         const today = new Date();
         const isToday = d === today.getDate() && month === today.getMonth() && year === today.getFullYear();
-        // 使用data属性存储日期，移除onclick属性（关键修改）
-        row += `<td class="${isToday ? "today" : ""}" data-date="${year},${month},${d}">${d}</td>`;
+        row += `<td class="${isToday ? "today" : ""}" onclick="showDayDetail(${year}, ${month}, ${d})">${d}</td>`;
     }
     row += "</tr>";
-    calendarTable.innerHTML += row;
+    calendar.innerHTML += row;
 
     // 默认显示今天详情
     showDayDetail(year, month, date.getDate());
@@ -124,16 +109,14 @@ document.getElementById("next").onclick = () => {
     renderCalendar(currentDate);
 };
 
-// ======== 农历计算（修复后） ========
+// ======== 农历计算（使用 lunar-javascript） ========
 function getLunarDate(year, month, day) {
     try {
-        // 关键修复：确保传递给 solarlunar 的月份是 1-12（当前月份是从 renderCalendar 接收的 0-11）
-        const lunar = solarlunar.solar2lunar(year, month + 1, day);
-        // 处理农历特殊日期（如初一、十五等）
-        const lunarDay = lunar.lDay === 1 ? '初一' : 
-                         lunar.lDay === 15 ? '十五' : 
-                         lunar.lDay;
-        return `农历${lunar.lMonth}月${lunarDay}`;
+        // lunar-javascript 要求月份为 1-12
+        const lunar = lunar.solar2lunar(year, month, day);
+        const monthStr = lunar.isLeap() ? `闰${lunar.getMonthInChinese()}` : lunar.getMonthInChinese();
+        const dayStr = lunar.getDayInChinese();
+        return `农历${monthStr}月${dayStr}`;
     } catch (e) {
         console.error('农历计算错误:', e);
         return "农历计算失败";
@@ -143,13 +126,13 @@ function getLunarDate(year, month, day) {
 function showDayDetail(year, month, day) {
     try {
         const date = new Date(year, month, day);
-        const weekdays = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
-        const weekday = weekdays[date.getDay()];
-        // 注意：这里直接传递 month（0-11），在 getLunarDate 内部统一处理 +1
-        const lunar = getLunarDate(year, month, day); 
+        const weekday = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"][date.getDay()];
+        // 转换为 1-12 月传递给农历计算
+        const lunar = getLunarDate(year, month + 1, day);
         document.getElementById("dayDetail").textContent =
             `${year}年${month + 1}月${day}日 ${weekday} | ${lunar}`;
     } catch (e) {
+        console.error('日期详情错误:', e);
         document.getElementById("dayDetail").textContent = "日期信息加载失败";
     }
 }
