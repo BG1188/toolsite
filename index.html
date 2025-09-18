@@ -1,46 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>测试首页</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background: #f0f2f5;
-    }
-    h1 {
-      margin-bottom: 30px;
-      color: #333;
-    }
-    .btn {
-      display: inline-block;
-      margin: 10px;
-      padding: 15px 30px;
-      font-size: 18px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      opacity: 0.9;
-    }
-    .inquiry {
-      background: #007bff;
-      color: white;
-    }
-    .whatsapp {
-      background: #25d366;
-      color: white;
-    }
-  </style>
+  <title>工具导航站</title>
+  <link rel="stylesheet" href="css/style.css">
   <!-- TikTok Pixel Code Start -->
 <script>
 !function (w, d, t) {
@@ -54,17 +18,20 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 }(window, document, 'ttq');
 </script>
 <!-- TikTok Pixel Code End -->
+
+
 </head>
 <body>
-  <h1>测试首页</h1>
-  <!-- 询盘按钮 -->
-  <button class="btn inquiry" onclick="window.location.href='success.html'">
-    询盘
-  </button>
-  <!-- WhatsApp 聊天按钮 -->
-  <button class="btn whatsapp">
-    WhatsApp 聊天
-  </button>
+  <header>
+    <h1>🔧 在线工具导航</h1>
+  </header>
+  <main>
+    <div class="tool-grid">
+      <a class="tool-card" href="tools/password.html">
+        🔑 在线密码生成器
+      </a>
+      <!-- 以后可在这里继续添加新工具 -->
+    </div>
+  </main>
 </body>
 </html>
-
