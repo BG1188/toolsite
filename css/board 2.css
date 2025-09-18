@@ -8,7 +8,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
 }
 
 /* 整体容器：PC 横向，手机竖向 */
@@ -34,7 +34,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: all 0.3s ease;
 }
 
 .calendar header {
@@ -47,12 +46,6 @@ body {
 .calendar h2 {
     font-size: 1.5rem;
     color: #0077b6;
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
-
-.calendar h2:hover {
-    color: #023e8a;
 }
 
 .calendar button {
@@ -62,15 +55,9 @@ body {
     border-radius: 8px;
     cursor: pointer;
     transition: 0.2s;
-    transform: translateY(0);
 }
 .calendar button:hover {
     background: #90e0ef;
-    transform: translateY(-2px);
-}
-
-.calendar button:active {
-    transform: translateY(0);
 }
 
 .calendar table {
@@ -99,12 +86,6 @@ body {
     font-weight: bold;
 }
 
-.calendar td.selected {
-    background: #90e0ef;
-    color: #023e8a;
-    font-weight: bold;
-}
-
 /* 时间 + 天气 */
 .info-panel {
     flex: 1;
@@ -121,7 +102,6 @@ body {
     font-weight: bold;
     margin-bottom: 10px;
     color: #023e8a;
-    transition: all 0.3s ease;
 }
 
 #date {
@@ -136,12 +116,6 @@ body {
     padding: 12px;
     border-radius: 12px;
     color: #03045e;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-
-#weather:hover {
-    background: #caf0f8;
 }
 
 /* ===== 响应式设计 ===== */
@@ -149,7 +123,6 @@ body {
     .board-container {
         flex-direction: column;
         height: auto;
-        min-height: 100vh;
     }
     .calendar {
         border-right: none;
@@ -160,14 +133,6 @@ body {
     }
     #date {
         font-size: 1.2rem;
-    }
-    .calendar td {
-        padding: 6px 2px;
-        font-size: 0.9rem;
-    }
-    .day-detail {
-        font-size: 0.9rem;
-        padding: 8px;
     }
 }
 
@@ -180,22 +145,4 @@ body {
     color: #333;
     text-align: center;
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
-}
-
-/* 加载动画 */
-.loading::after {
-    content: "";
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    border: 2px solid rgba(0, 119, 182, 0.3);
-    border-radius: 50%;
-    border-top-color: #0077b6;
-    animation: spin 1s ease-in-out infinite;
-    margin-left: 0.5em;
-    vertical-align: middle;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
 }
